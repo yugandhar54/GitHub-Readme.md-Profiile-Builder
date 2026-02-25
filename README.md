@@ -1,143 +1,107 @@
 # 🛠️ README Profile Builder
 
-> A simple web app to generate stunning GitHub profile READMEs — built as a college project using Java Spring Boot and plain HTML/CSS/JS.
+![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=flat-square&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2-6DB33F?style=flat-square&logo=spring&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![HTML/CSS](https://img.shields.io/badge/HTML%2FCSS-Modern_UI-2299EC?style=flat-square&logo=html5&logoColor=white)
+
+A dynamic web application that generates stunning, professional **GitHub Profile READMEs** with a few clicks. Features a modern brutalist design, dynamic categorization, and an offline JavaScript fallback builder.
 
 ---
 
-## 📁 Project Structure
+## 🔄 How It Works
 
-```
-README-Profile-Builder/
-├── backend/
-│   ├── pom.xml                          ← Maven build file
-│   └── src/main/java/com/student/readmebuilder/
-│       ├── MainApplication.java         ← Spring Boot entry point
-│       ├── ReadmeGenerator.java         ← Builds the README markdown
-│       └── Controller.java             ← REST API endpoints
-├── frontend/
-│   ├── index.html                       ← Main page with form + preview
-│   ├── style.css                        ← Dark theme styling
-│   └── script.js                        ← Form logic, API calls, download
-├── generated/
-│   └── README.md                        ← Sample output (auto-saved here)
-└── README.md                            ← This file
+```mermaid
+graph TD
+    subgraph Step 1: User Input
+        A["User visits Frontend"] -->|Fills form| B["Name, Skills, Socials"]
+        B -->|Selects options| C["Category Chips"]
+    end
+
+    subgraph Step 2: Generation Engine
+        C -->|Submit| D{"Backend / Falback"}
+        D -->|Online: Spring Boot API| E["ReadmeGenerator.java"]
+        D -->|Offline: Vanilla JS| F["buildReadme()"]
+        E -->|Processes templates| G["Markdown Output"]
+        F -->|Processes templates| G
+    end
+
+    subgraph Step 3: Result
+        G --> H["Preview in Browser"]
+        H -->|Copy| I["Clipboard"]
+        H -->|Download| J["README.md file"]
+    end
 ```
 
 ---
 
-## 🚀 How to Run
-
-### Step 1 — Start the Backend
-
-You need Java 17+ and Maven installed.
+## 🚀 Quick Start
 
 ```bash
+git clone https://github.com/Deekshith06/README-Profile-Builder.git
+cd README-Profile-Builder
+
+# Start the Backend (Java 17+ & Maven required)
 cd backend
 mvn spring-boot:run
+# Server runs on http://localhost:8080
+
+# Open the Frontend
+cd ../frontend
+open index.html # Or just double click the file
 ```
 
-The server starts at `http://localhost:8080`
-
-### Step 2 — Open the Frontend
-
-Just open `frontend/index.html` in your browser.  
-No build step needed — it's plain HTML!
-
-```bash
-open frontend/index.html
-# or just double-click the file
-```
-
-> ⚡ **Offline mode**: The frontend also works without the backend!  
-> If the server isn't running, it generates the README locally using JavaScript.
+> ⚡ **Offline Mode**: The tool works completely offline without the backend running, utilizing a powerful JavaScript fallback generator!
 
 ---
 
-## 🎯 What It Does
+## 📂 Project Structure
 
-1. User fills in the form (name, title, skills, GitHub, social links)
-2. Frontend sends the data to `POST /api/generate`
-3. Java backend builds the README markdown with badges, stats, animations
-4. Preview appears in the browser (markdown tab + rendered tab)
-5. User can **copy** to clipboard or **download** as `README.md`
-
----
-
-## ✨ Features of the Generated README
-
-| Feature | Description |
-|--------|-------------|
-| 🎨 Animated header | Capsule-render wave banner with custom title |
-| ⌨️ Typing animation | Cycles through your title and top skills |
-| 🖼️ Language icons | Animated SVG icons (techstack-generator) for popular languages |
-| 🏷️ Skill badges | Shields.io badges for all listed skills with correct colors |
-| 📊 GitHub stats | Streak, profile summary cards, trophy showcase |
-| 📈 Contribution graph | Activity heatmap from github-readme-activity-graph |
-| 🐍 Snake animation | Contribution grid snake |
-| 🌐 Social links | Badges for LinkedIn, Twitter, GitHub, Email, Portfolio |
-| 💭 Dev quote | Random dev quote of the day |
+```text
+├── backend/                       # Spring Boot Java Backend
+│   ├── src/main/java/.../         # Core API and Generator code
+│   │   ├── MainApplication.java   # Spring Boot entry point
+│   │   ├── ReadmeGenerator.java   # Builds the README markdown
+│   │   └── Controller.java        # REST API endpoints
+│   └── pom.xml                    # Maven dependencies
+└── frontend/                      # Vanilla JS/CSS Frontend
+    ├── index.html                 # Main interface
+    ├── style.css                  # Modern UI styling
+    └── script.js                  # Form logic & Offline Builder
+```
 
 ---
 
 ## 🔧 Tech Stack
 
-| Layer | Tech |
-|-------|------|
-| Backend | Java 17, Spring Boot 3.2 |
+| Component | Technology |
+|-----------|------------|
 | Frontend | HTML5, Vanilla CSS, Vanilla JS |
-| Build | Maven |
-| Markdown | Generated as a string (no templates) |
+| Backend API | Java 17, Spring Boot 3.2 |
+| Build Tool | Maven |
 
 ---
 
-## 🧑‍💻 How the Code Works (Student Explanation)
+## ✨ Features
 
-### Backend Flow
-```
-Browser → POST /api/generate → Controller.java
-                                     ↓
-                             ReadmeGenerator.java
-                             (builds markdown string)
-                                     ↓
-                             Returns JSON { readme: "..." }
-                             Also saves to generated/README.md
-```
-
-### Frontend Flow
-```
-User fills form → submit event → fetch("POST /api/generate")
-                                        ↓
-                              Show result in <pre> tag
-                              User clicks Download → create Blob → <a> download
-```
-
-### `ReadmeGenerator.java` Logic
-- Takes name, title, about, skills etc. as parameters
-- Matches each skill against a hardcoded badge list (e.g., "python" → blue badge)
-- Matches skills against language icon list (e.g., "java" → techstack-generator SVG)
-- Concatenates everything into a big markdown string
-- Returns that string to the controller
+| Feature | Description |
+|--------|-------------|
+| **Dynamic Headers** | Capsule-render animated waving banners |
+| **Typing Animation** | Cycles through your top skills |
+| **Categorization** | Auto-categorizes skills into languages, AI, DBs, etc. |
+| **Rich Badges** | Shields.io and TechStack SVGs |
+| **GitHub Stats** | Streak, Summaries, Trophies, and Contribution heatmaps |
 
 ---
 
-## 📝 Sample Output
+## 👤 Author
 
-See [`generated/README.md`](generated/README.md) for a sample of what the tool generates for an AI/ML engineer profile.
+**Seelaboyina Deekshith**
 
----
-
-## ⚠️ Limitations (It's a Student Project!)
-
-- No database — everything is generated on the fly
-- Only one README saved at a time (file gets overwritten)
-- The "preview" tab in the browser is a rough approximation — the real look is on GitHub
-- Skills are matched by keyword, so unusual names might get a generic badge
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Deekshith06)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/deekshith030206)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:seelaboyinadeekshith@gmail.com)
 
 ---
 
-## 👨‍💻 About
-
-Built by a final-year Computer Science student as a fun personal project.  
-The goal was to make something useful while keeping the code simple and readable.
-
-**Not a SaaS product. Not enterprise software. Just a cool student project. 😄**
+> ⭐ Star this repo if it helped you!

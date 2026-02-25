@@ -8,24 +8,25 @@
 }
 
 :root {
-    /* Core palette — warmer sky-blue primary instead of pure cyan */
-    --bg-deep: #060a12;
+    /* Humanized Resets & Colors */
+    --bg-deep: #0f111a;
+    /* Softer, less "void-like" black */
     --bg-mid: #0b1120;
-    --bg-card: rgba(255, 255, 255, 0.045);
-    --bg-card-hov: rgba(255, 255, 255, 0.075);
-    --border: rgba(255, 255, 255, 0.09);
-    --border-glow: rgba(56, 189, 248, 0.4);
+    --bg-card: #181b24;
+    /* Solid card rather than hyper-translucent glass */
+    --bg-card-hov: #1e222d;
+    --border: #2a2e3a;
+    /* Noticeable but subtle border */
+    --border-glow: rgba(59, 130, 246, 0.4);
 
-    --accent: #38bdf8;
-    /* sky-400 — warmer than pure cyan */
+    --accent: #3b82f6;
+    /* Classic blue rather than pure cyan */
     --accent2: #818cf8;
-    /* indigo-400 */
     --accent3: #f97316;
-    /* orange-500 */
-    --accent-dim: rgba(56, 189, 248, 0.12);
+    --accent-dim: rgba(59, 130, 246, 0.12);
 
-    --text-primary: #e2e8f0;
-    --text-muted: #64748b;
+    --text-primary: #e5e7eb;
+    --text-muted: #9ca3af;
     --text-dim: #94a3b8;
     --success: #4ade80;
     --warn: #fbbf24;
@@ -33,9 +34,10 @@
     --font-main: 'Inter', sans-serif;
     --font-mono: 'Fira Code', monospace;
 
-    --radius-sm: 9px;
+    /* Slightly broken symmetry for a modern brutalist/human touch */
+    --radius-sm: 6px;
     --radius-md: 15px;
-    --radius-lg: 20px;
+    --radius-lg: 12px;
     --radius-xl: 28px;
 
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
@@ -48,13 +50,14 @@ html {
 }
 
 body {
-    font-family: var(--font-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     background: var(--bg-deep);
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
-    line-height: 1.65;
+    line-height: 1.6;
+    padding-bottom: 60px;
 }
 
 /* ===== ANIMATED BACKGROUND ===== */
@@ -137,7 +140,9 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 48px 24px 40px;
+    padding: 60px 20px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
     background: linear-gradient(175deg, transparent 55%, var(--bg-deep) 100%);
 }
 
@@ -285,27 +290,23 @@ body {
     padding: 0 24px 56px;
 }
 
-/* ===== GLASS CARD ===== */
+/* Redesigned Card Layout (No more glowing glassmorphism, just clean software design) */
 .glass-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    box-shadow: var(--shadow);
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.glass-card:hover {
-    border-color: rgba(56, 189, 248, 0.22);
-    box-shadow: var(--shadow), var(--glow);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 24px;
 }
 
 /* ===== LAYOUT GRID ===== */
 .layout-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    gap: 40px;
+    /* Wider gap */
+    max-width: 1200px;
+    margin: 0 auto;
     align-items: start;
 }
 
@@ -357,12 +358,13 @@ body {
     margin-left: 6px;
 }
 
-/* ===== FORM ===== */
+/* Organic Spacing on Forms */
 .form {
-    padding: 26px 28px 32px;
+    padding: 32px 24px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 22px;
+    /* Naturally spacious */
 }
 
 /* Staggered entrance per form-group */
@@ -466,15 +468,13 @@ body {
 .form-group textarea,
 .form-group select {
     width: 100%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
-    border-left: 3px solid transparent;
+    background: #0f111a;
+    border: 1px solid #374151;
     border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    font-size: 0.91rem;
-    padding: 10px 13px;
-    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, border-left-color 0.2s;
+    color: #f3f4f6;
+    padding: 12px 14px;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
     resize: vertical;
     outline: none;
 }
@@ -489,9 +489,10 @@ body {
 .form-group textarea:focus,
 .form-group select:focus {
     border-color: var(--accent);
-    border-left-color: var(--accent);
-    background: rgba(56, 189, 248, 0.04);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+    background: #0f111a;
+    outline: none;
+    box-shadow: 0 0 0 1px var(--accent);
+    /* Crisp focus ring, not blurry glow */
 }
 
 .form-group select {
@@ -544,7 +545,7 @@ body {
     border-radius: 0 !important;
     box-shadow: none !important;
     flex: 1;
-    background: rgba(255, 255, 255, 0.04) !important;
+    background: #0f111a !important;
     border-left: none !important;
 }
 
