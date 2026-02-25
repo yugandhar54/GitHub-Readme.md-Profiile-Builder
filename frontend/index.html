@@ -62,7 +62,19 @@
                     <!-- Title -->
                     <div class="form-group">
                         <label for="title">🎯 Professional Title <span class="required">*</span></label>
-                        <input type="text" id="title" name="title" placeholder="e.g. AI & ML Engineer" required />
+                        <select id="title" name="title" required>
+                            <option value="" disabled selected>Select your specialization</option>
+                            <option value="AI & Machine Learning">AI & Machine Learning</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Cyber Security">Cyber Security</option>
+                            <option value="Cloud Computing">Cloud Computing</option>
+                            <option value="Software Engineering">Software Engineering</option>
+                            <option value="Full Stack Development">Full Stack Development</option>
+                            <option value="Internet of Things (IoT)">Internet of Things (IoT)</option>
+                            <option value="Blockchain">Blockchain</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
 
                     <!-- About Me -->
@@ -327,19 +339,19 @@
 
                     <!-- GitHub -->
                     <div class="form-group">
-                        <label for="github">🐙 GitHub Username</label>
+                        <label for="github">🐙 GitHub Username <span class="required">*</span></label>
                         <div class="input-prefix">
                             <span class="prefix">github.com/</span>
-                            <input type="text" id="github" name="github" placeholder="your-username" />
+                            <input type="text" id="github" name="github" placeholder="your-username" required />
                         </div>
                     </div>
 
                     <!-- LinkedIn -->
                     <div class="form-group">
-                        <label for="linkedin">💼 LinkedIn</label>
+                        <label for="linkedin">💼 LinkedIn <span class="required">*</span></label>
                         <div class="input-prefix">
                             <span class="prefix">linkedin.com/in/</span>
-                            <input type="text" id="linkedin" name="linkedin" placeholder="your-profile" />
+                            <input type="text" id="linkedin" name="linkedin" placeholder="your-profile" required />
                         </div>
                     </div>
 
