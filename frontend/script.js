@@ -66,6 +66,26 @@ function switchChipTab(cat, btn) {
     btn?.classList.add("active");
 }
 
+// ---- github extras collapsible ----
+function toggleExtras() {
+    const panel = document.getElementById("extrasPanel");
+    const arrow = document.getElementById("extrasArrow");
+    panel.classList.toggle("open");
+    arrow.classList.toggle("open");
+}
+
+// ---- strip unchecked extras from generated markdown ----
+function filterReadme(md) {
+    const on = id => document.getElementById(id)?.checked !== false;
+    if (!on("opt_views")) md = md.replace(/\[!\[Profile Views\][^\n]+\n/g, "");
+    if (!on("opt_streak")) md = md.replace(/\[!\[GitHub Streak\][^\n]+\n\n/g, "");
+    if (!on("opt_stats")) md = md.replace(/<img[^>]*github-profile-summary-cards[^>]*>\n/g, "");
+    if (!on("opt_trophy")) md = md.replace(/### 🏆 GitHub Trophies[\s\S]*?github-profile-trophy[^\n]*\n\n/m, "");
+    if (!on("opt_graph")) md = md.replace(/### 📈 Contribution Graph[\s\S]*?activity-graph[^\n]*\n\n/m, "");
+    if (!on("opt_snake")) md = md.replace(/<img[^>]*Platane\/snk[^>]*>\n\n/m, "");
+    return md;
+}
+
 
 // ---- form submit ----
 document.getElementById("readmeForm").addEventListener("submit", async function (e) {
@@ -97,6 +117,8 @@ document.getElementById("readmeForm").addEventListener("submit", async function 
         generatedReadme = buildReadme(f);
         showToast("⚠️ Using offline mode (backend not running)", "warn");
     }
+
+    generatedReadme = filterReadme(generatedReadme);
 
     document.getElementById("markdownContent").textContent = generatedReadme;
     showState("result");
