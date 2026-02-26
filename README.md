@@ -42,7 +42,7 @@ graph TD
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/Deekshith06/README-Profile-Builder.git
+git clone https://github.com/yugandhar54/GitHub-Readme.md-Profiile-Builder.git
 cd README-Profile-Builder
 
 # Start the Backend (Java 17+ & Maven required)
@@ -102,7 +102,7 @@ open index.html # Or just double click the file
 
 **Seelaboyina Deekshith**
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Deekshith06)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yugandhar54)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/deekshith030206)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:seelaboyinadeekshith@gmail.com)
 
